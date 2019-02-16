@@ -95,7 +95,8 @@ public final class NimbleFooted {
   public static void registerEnchantment(final BiConsumer<String, Enchantment> registrar) {
     checkState(!registeredEnchantment, "Enchantment already registered!");
     LOGGER.debug("Registering enchantment with registrar {}", registrar);
-    registrar.accept(new Identifier(ID, "nimble_footed").toString(), NimbleFootedEnchantment.getInstance());
+    final String id = new Identifier(ID, "nimble_footed").toString();
+    registrar.accept(id, NimbleFootedEnchantment.getInstance());
     registeredEnchantment = true;
   }
 
