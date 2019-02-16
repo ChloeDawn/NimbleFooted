@@ -1,0 +1,24 @@
+{
+  "required": true,
+  "minVersion": "0.7.11",
+  "compatibilityLevel": "JAVA_8",
+  "target": "@environment(DEFAULT)",
+  "refmap": "@refmap@",
+  "package": "io.github.insomniakitten.nimblefooted.mixin",
+  "client": [
+    "BootstrapMixin",
+    "ClientPlayerEntityMixin"
+  ],
+  "mixins": [
+    "EnchantmentsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1,
+    "defaultGroup": "default",
+    "maxShiftBy": 0
+  },
+  "overwrites": {
+    "conformVisibility": true,
+    "requireAnnotations": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "nimblefooted",
+  "name": "Nimble Footed",
+  "version": "@version@",
+  "descriptions": "Adds an enchantment that increases the player's agility",
+  "side": "universal",
+  "license": "Apache 2.0",
+  "authors": [
+    {
+      "name": "InsomniaKitten",
+      "website": "https://github.com/InsomniaKitten"
+    }
+  ],
+  "recommends": {
+    "fabric": "*"
+  },
+  "mixins": {
+    "common": "mixins.nimblefooted.json"
+  }
+}

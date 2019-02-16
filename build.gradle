@@ -1,0 +1,48 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+buildscript {
+  repositories {
+    jcenter()
+    maven {
+      name = 'fabricmc.net'
+      url = 'https://maven.fabricmc.net'
+    }
+  }
+  dependencies {
+    classpath "net.fabricmc:fabric-loom:$loomVersion"
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'fabric-loom'
+
+archivesBaseName = 'NimbleFooted'
+group = 'io.github.insomniakitten'
+version = nimbleFootedVersion
+sourceCompatibility = 1.8
+
+minecraft {
+  refmapName = 'mixins.nimblefooted.refmap.json'
+}
+
+repositories {
+  maven {
+    name = 'spongepowered.org'
+    url = 'https://repo.spongepowered.org/maven'
+  }
+}
+
+dependencies {
+  minecraft "com.mojang:minecraft:$minecraftVersion"
+  mappings "net.fabricmc:yarn:$minecraftVersion.$mappingsVersion"
+  modCompile "net.fabricmc:fabric-loader:$loaderVersion" exclude group: 'org.spongepowered'
+  implementation "com.google.code.findbugs:jsr305:$jsr305Version"
+  implementation 'org.spongepowered:mixin:0.7.11-SNAPSHOT' exclude module: 'launchwrapper'
+}
+
+processResources {
+  filter ReplaceTokens, tokens: [
+    version: project.version,
+    refmap : minecraft.refmapName
+  ]
+}
