@@ -102,7 +102,6 @@ public final class NimbleFooted {
   /**
    * Constructs a nimble-footed processor for the given player entity. This method
    * is intended for mixin callback invocation, and should not be called normally.
-   * It is also only callable *once*, for the single client player at runtime.
    *
    * @param entity The client player entity to construct a processor for
    * @return A {@link NimbleFootedProcessor} exposed as {@link Runnable}
