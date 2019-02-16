@@ -113,7 +113,9 @@ public final class NimbleFooted {
   public static Runnable constructProcessor(final ClientPlayerEntity entity) {
     checkState(!constructedProcessor, "Processor already constructed! (%s)", entity);
     LOGGER.debug("Constructing processor for client player entity {}", entity);
-    return NimbleFootedProcessor.construct(entity, () -> constructedProcessor = true);
+    final Runnable processor = new NimbleFootedProcessor(entity);
+    constructedProcessor = true;
+    return processor;
   }
 
   /**

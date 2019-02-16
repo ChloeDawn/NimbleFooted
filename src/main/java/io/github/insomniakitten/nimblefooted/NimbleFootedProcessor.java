@@ -41,17 +41,9 @@ final class NimbleFootedProcessor implements Runnable {
   private Float lastStepHeight;
   private boolean wasNimbleFooted;
 
-  private NimbleFootedProcessor(final ClientPlayerEntity player) {
+  NimbleFootedProcessor(final ClientPlayerEntity player) {
     jumpHeight = NimbleFooted.getDefaultJumpHeight();
     clientPlayer = player;
-  }
-
-  static Runnable construct(final ClientPlayerEntity player, final Runnable post) {
-    try {
-      return new NimbleFootedProcessor(player);
-    } finally {
-      post.run();
-    }
   }
 
   @Override
