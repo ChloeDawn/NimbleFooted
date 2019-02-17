@@ -48,7 +48,7 @@ abstract class EnchantmentsMixin {
    * @author InsomniaKitten
    */
   // FIXME: Plugin does not recognize static init
-  @Inject(method = "<clinit>", at = @At("TAIL"))
+  @Inject(method = "Lnet/minecraft/enchantment/Enchantments;<clinit>()V", at = @At("TAIL"))
   private static void nimblefooted$registerEnchantment(final CallbackInfo callbackInfo) {
     NimbleFooted.registerEnchantment(EnchantmentsMixin::register);
   }
