@@ -58,6 +58,17 @@ public final class NimbleFooted {
   }
 
   /**
+   * The nimble-footed enchantment's singleton instance
+   *
+   * @throws IllegalStateException If the enchantment is not yet registered
+   * @author InsomniaKitten
+   */
+  public static Enchantment getEnchantment() {
+    checkState(registeredEnchantment, "Enchantment not registered!");
+    return NimbleFootedEnchantment.getInstance();
+  }
+
+  /**
    * The elevated step height for players. Currently, this is a fixed
    * constant, but it is planned to support determining this value
    * dynamically, in case mods ever wish to modify the player's

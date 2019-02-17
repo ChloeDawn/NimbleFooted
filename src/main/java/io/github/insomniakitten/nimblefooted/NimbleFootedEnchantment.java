@@ -20,10 +20,7 @@ import net.fabricmc.loader.launch.common.FabricLauncherBase;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.text.StringTextComponent;
 import net.minecraft.text.TextComponent;
-import net.minecraft.text.TextFormat;
-import net.minecraft.text.TranslatableTextComponent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,7 +35,7 @@ final class NimbleFootedEnchantment extends Enchantment {
   private static final Logger LOGGER = LogManager.getLogger("NimbleFootedEnchantment");
   private static final NimbleFootedEnchantment INSTANCE = new NimbleFootedEnchantment();
 
-  private boolean shouldLogApiWarning = true;
+  private boolean warnMissingApi = true;
 
   private NimbleFootedEnchantment() {
     super(Enchantment.Weight.UNCOMMON, EnchantmentTarget.WEARABLE, new EquipmentSlot[] { EquipmentSlot.FEET });
@@ -51,18 +48,11 @@ final class NimbleFootedEnchantment extends Enchantment {
     return INSTANCE;
   }
 
-  @Override // TODO Enchantment#getTextComponent mixin to avoid implementation recreation?
+  @Override
   public TextComponent getTextComponent(final int level) {
-    if (NimbleFooted.isMissingApi()) {
-      if (shouldLogApiWarning) {
-        LOGGER.warn("Fabric API is required for localization, falling back to hardcoded strings");
-        shouldLogApiWarning = false;
-      }
-      final TextComponent component = new StringTextComponent("Nimble-footed").applyFormat(TextFormat.GRAY);
-      if (level != 1) {
-        component.append(" ").append(new TranslatableTextComponent("enchantment.level." + level));
-      }
-      return component;
+    if (warnMissingApi && NimbleFooted.isMissingApi()) {
+      LOGGER.warn("Fabric API is required for localization, hardcoded string will be used");
+      warnMissingApi = false;
     }
     return super.getTextComponent(level);
   }
