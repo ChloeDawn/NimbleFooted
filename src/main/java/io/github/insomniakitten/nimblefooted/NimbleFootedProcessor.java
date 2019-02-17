@@ -32,14 +32,14 @@ import static com.google.common.base.Preconditions.checkState;
  */
 @Environment(EnvType.CLIENT)
 final class NimbleFootedProcessor implements Runnable {
-  private final float jumpHeight;
+  private final float elevatedStepHeight;
   private final LivingEntity clientPlayer;
 
   private float lastStepHeight = Float.NaN;
   private boolean wasNimbleFooted = false;
 
   NimbleFootedProcessor(final ClientPlayerEntity player) {
-    jumpHeight = NimbleFooted.getDefaultJumpHeight();
+    elevatedStepHeight = NimbleFooted.getElevatedStepHeight();
     clientPlayer = player;
   }
 
@@ -50,9 +50,9 @@ final class NimbleFootedProcessor implements Runnable {
         final float stepHeight = clientPlayer.stepHeight;
         checkState(!Float.isNaN(stepHeight), "Player stepHeight is NaN!");
         lastStepHeight = stepHeight;
-        clientPlayer.stepHeight = jumpHeight;
+        clientPlayer.stepHeight = elevatedStepHeight;
         wasNimbleFooted = true;
-      } else if (jumpHeight != clientPlayer.stepHeight) {
+      } else if (elevatedStepHeight != clientPlayer.stepHeight) {
         lastStepHeight = clientPlayer.stepHeight;
       }
     } else if (wasNimbleFooted) {

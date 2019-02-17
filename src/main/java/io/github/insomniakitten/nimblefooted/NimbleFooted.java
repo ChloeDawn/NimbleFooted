@@ -46,7 +46,7 @@ public final class NimbleFooted {
 
   private static final Logger LOGGER = LogManager.getLogger("NimbleFooted");
 
-  private static final float JUMP_HEIGHT = 1.25F;
+  private static final float ELEVATED_STEP_HEIGHT = 1.25F;
 
   @Nullable private static Boolean missingApi;
 
@@ -58,15 +58,15 @@ public final class NimbleFooted {
   }
 
   /**
-   * The default jump height for players. Currently, this is a fixed
+   * The elevated step height for players. Currently, this is a fixed
    * constant, but it is planned to support determining this value
    * dynamically, in case mods ever wish to modify the player's
-   * default jump height. // TODO
+   * elevated step height. // TODO
    *
    * @author InsomniaKitten
    */
-  public static float getDefaultJumpHeight() {
-    return JUMP_HEIGHT;
+  public static float getElevatedStepHeight() {
+    return ELEVATED_STEP_HEIGHT;
   }
 
   /**
