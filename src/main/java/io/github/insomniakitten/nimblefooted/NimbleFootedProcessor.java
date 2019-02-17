@@ -47,14 +47,16 @@ final class NimbleFootedProcessor implements Runnable {
   public void run() {
     if (isNimbleFooted()) {
       if (!wasNimbleFooted) {
-        lastStepHeight = clientPlayer.stepHeight;
+        final float stepHeight = clientPlayer.stepHeight;
+        checkState(!Float.isNaN(stepHeight), "Player stepHeight is NaN!");
+        lastStepHeight = stepHeight;
         clientPlayer.stepHeight = jumpHeight;
         wasNimbleFooted = true;
       } else if (jumpHeight != clientPlayer.stepHeight) {
         lastStepHeight = clientPlayer.stepHeight;
       }
     } else if (wasNimbleFooted) {
-      checkState(!Float.isNaN(lastStepHeight), "wasNimbleFooted was true but lastStepHeight is absent (NaN)");
+      checkState(!Float.isNaN(lastStepHeight), "Player was nimble-footed but lastStepHeight is NaN!");
       clientPlayer.stepHeight = lastStepHeight;
       wasNimbleFooted = false;
     }
