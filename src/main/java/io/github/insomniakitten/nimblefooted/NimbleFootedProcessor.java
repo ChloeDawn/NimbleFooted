@@ -22,8 +22,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
 
-import javax.annotation.Nullable;
-
 import static com.google.common.base.Preconditions.checkState;
 
 /**
@@ -37,9 +35,8 @@ final class NimbleFootedProcessor implements Runnable {
   private final float jumpHeight;
   private final LivingEntity clientPlayer;
 
-  @Nullable
-  private Float lastStepHeight;
-  private boolean wasNimbleFooted;
+  private float lastStepHeight = Float.NaN;
+  private boolean wasNimbleFooted = false;
 
   NimbleFootedProcessor(final ClientPlayerEntity player) {
     jumpHeight = NimbleFooted.getDefaultJumpHeight();
@@ -57,7 +54,7 @@ final class NimbleFootedProcessor implements Runnable {
         lastStepHeight = clientPlayer.stepHeight;
       }
     } else if (wasNimbleFooted) {
-      checkState(lastStepHeight != null, "wasNimbleFooted && lastStepHeight == null");
+      checkState(!Float.isNaN(lastStepHeight), "wasNimbleFooted was true but lastStepHeight is absent (NaN)");
       clientPlayer.stepHeight = lastStepHeight;
       wasNimbleFooted = false;
     }
