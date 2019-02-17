@@ -27,6 +27,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(Enchantment.class)
 @SuppressWarnings("RedundantCast")
 abstract class EnchantmentMixin {
+  @Deprecated
   private EnchantmentMixin() {}
 
   @ModifyVariable(
