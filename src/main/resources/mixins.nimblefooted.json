@@ -6,12 +6,12 @@
   "refmap": "@refmap@",
   "package": "io.github.insomniakitten.nimblefooted.mixin",
   "client": [
-    "BootstrapMixin",
-    "ClientPlayerEntityMixin"
+    "NimbleFootedMixins$BootstrapMixin",
+    "NimbleFootedMixins$ClientPlayerEntityMixin"
   ],
   "mixins": [
-    "EnchantmentMixin",
-    "EnchantmentsMixin"
+    "NimbleFootedMixins$EnchantmentMixin",
+    "NimbleFootedMixins$EnchantmentsMixin"
   ],
   "injectors": {
     "defaultRequire": 1,
