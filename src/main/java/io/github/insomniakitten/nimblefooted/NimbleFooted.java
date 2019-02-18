@@ -65,7 +65,7 @@ public final class NimbleFooted {
    */
   public static Enchantment getEnchantment() {
     checkState(registeredEnchantment, "Enchantment not registered!");
-    return NimbleFootedEnchantment.getInstance();
+    return NimbleFootedEnchantment.INSTANCE;
   }
 
   /**
@@ -107,7 +107,7 @@ public final class NimbleFooted {
     checkState(!registeredEnchantment, "Enchantment already registered!");
     LOGGER.debug("Registering enchantment with registrar {}", registrar);
     final String id = new Identifier(ID, "nimble_footed").toString();
-    registrar.accept(id, NimbleFootedEnchantment.getInstance());
+    registrar.accept(id, NimbleFootedEnchantment.INSTANCE);
     registeredEnchantment = true;
   }
 
@@ -141,6 +141,6 @@ public final class NimbleFooted {
   public static boolean isNimbleFooted(final LivingEntity entity) {
     checkState(registeredEnchantment, "Enchantment not registered!");
     final ItemStack stack = entity.getEquippedStack(EquipmentSlot.FEET);
-    return EnchantmentHelper.getLevel(NimbleFootedEnchantment.getInstance(), stack) > 0;
+    return EnchantmentHelper.getLevel(NimbleFootedEnchantment.INSTANCE, stack) > 0;
   }
 }

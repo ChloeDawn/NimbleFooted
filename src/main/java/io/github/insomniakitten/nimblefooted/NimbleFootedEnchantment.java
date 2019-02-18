@@ -33,7 +33,8 @@ import java.util.Arrays;
  */
 final class NimbleFootedEnchantment extends Enchantment {
   private static final Logger LOGGER = LogManager.getLogger("NimbleFootedEnchantment");
-  private static final NimbleFootedEnchantment INSTANCE = new NimbleFootedEnchantment();
+
+  static final NimbleFootedEnchantment INSTANCE = new NimbleFootedEnchantment();
 
   private boolean warnMissingApi = true;
 
@@ -42,10 +43,6 @@ final class NimbleFootedEnchantment extends Enchantment {
     if (FabricLauncherBase.getLauncher().isDevelopment()) {
       Arrays.stream(Thread.currentThread().getStackTrace()).skip(1).forEach(LOGGER::info);
     }
-  }
-
-  static NimbleFootedEnchantment getInstance() {
-    return INSTANCE;
   }
 
   @Override
