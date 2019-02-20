@@ -53,9 +53,7 @@ public final class NimbleFooted {
   private static boolean registeredEnchantment;
   private static boolean constructedProcessor;
 
-  private NimbleFooted() {
-    throw new UnsupportedOperationException("Please rethink your priorities");
-  }
+  private NimbleFooted() {}
 
   /**
    * The nimble-footed enchantment's singleton instance
