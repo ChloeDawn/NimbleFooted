@@ -39,26 +39,26 @@ final class NimbleFootedProcessor implements Runnable {
   private boolean wasNimbleFooted = false;
 
   NimbleFootedProcessor(final ClientPlayerEntity player) {
-    elevatedStepHeight = NimbleFooted.getElevatedStepHeight();
-    clientPlayer = player;
+    this.elevatedStepHeight = NimbleFooted.getElevatedStepHeight();
+    this.clientPlayer = player;
   }
 
   @Override
   public void run() {
     if (isNimbleFooted()) {
-      if (!wasNimbleFooted) {
-        final float stepHeight = clientPlayer.stepHeight;
+      if (!this.wasNimbleFooted) {
+        final float stepHeight = this.clientPlayer.stepHeight;
         checkState(!Float.isNaN(stepHeight), "Player stepHeight is NaN!");
-        lastStepHeight = stepHeight;
-        clientPlayer.stepHeight = elevatedStepHeight;
-        wasNimbleFooted = true;
-      } else if (elevatedStepHeight != clientPlayer.stepHeight) {
-        lastStepHeight = clientPlayer.stepHeight;
+        this.lastStepHeight = stepHeight;
+        this.clientPlayer.stepHeight = this.elevatedStepHeight;
+        this.wasNimbleFooted = true;
+      } else if (this.elevatedStepHeight != this.clientPlayer.stepHeight) {
+        this.lastStepHeight = this.clientPlayer.stepHeight;
       }
-    } else if (wasNimbleFooted) {
-      checkState(!Float.isNaN(lastStepHeight), "Player was nimble-footed but lastStepHeight is NaN!");
-      clientPlayer.stepHeight = lastStepHeight;
-      wasNimbleFooted = false;
+    } else if (this.wasNimbleFooted) {
+      checkState(!Float.isNaN(this.lastStepHeight), "Player was nimble-footed but lastStepHeight is NaN!");
+      this.clientPlayer.stepHeight = this.lastStepHeight;
+      this.wasNimbleFooted = false;
     }
   }
 
@@ -71,15 +71,15 @@ final class NimbleFootedProcessor implements Runnable {
       isNimbleFooted = "<error>";
     }
     return MoreObjects.toStringHelper(this)
-      .add("clientPlayer", clientPlayer)
-      .add("stepHeight", clientPlayer.stepHeight)
-      .add("lastStepHeight", lastStepHeight)
+      .add("clientPlayer", this.clientPlayer)
+      .add("stepHeight", this.clientPlayer.stepHeight)
+      .add("lastStepHeight", this.lastStepHeight)
       .add("isNimbleFooted", isNimbleFooted)
-      .add("wasNimbleFooted", wasNimbleFooted)
+      .add("wasNimbleFooted", this.wasNimbleFooted)
       .toString();
   }
 
   private boolean isNimbleFooted() {
-    return NimbleFooted.isNimbleFooted(clientPlayer);
+    return NimbleFooted.isNimbleFooted(this.clientPlayer);
   }
 }

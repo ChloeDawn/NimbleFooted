@@ -41,15 +41,16 @@ final class NimbleFootedEnchantment extends Enchantment {
   private NimbleFootedEnchantment() {
     super(Enchantment.Weight.UNCOMMON, EnchantmentTarget.WEARABLE, new EquipmentSlot[] { EquipmentSlot.FEET });
     if (FabricLauncherBase.getLauncher().isDevelopment()) {
-      Arrays.stream(Thread.currentThread().getStackTrace()).skip(1).forEach(LOGGER::info);
+      Arrays.stream(Thread.currentThread().getStackTrace()).skip(1)
+        .forEach(NimbleFootedEnchantment.LOGGER::info);
     }
   }
 
   @Override
   public TextComponent getTextComponent(final int level) {
-    if (warnMissingApi && NimbleFooted.isMissingApi()) {
-      LOGGER.warn("Fabric API is required for localization, hardcoded string will be used");
-      warnMissingApi = false;
+    if (this.warnMissingApi && NimbleFooted.isMissingApi()) {
+      NimbleFootedEnchantment.LOGGER.warn("Fabric API is required for localization, hardcoded string will be used");
+      this.warnMissingApi = false;
     }
     return super.getTextComponent(level);
   }

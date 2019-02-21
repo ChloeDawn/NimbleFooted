@@ -62,7 +62,7 @@ public final class NimbleFooted {
    * @author InsomniaKitten
    */
   public static Enchantment getEnchantment() {
-    checkState(registeredEnchantment, "Enchantment not registered!");
+    checkState(NimbleFooted.registeredEnchantment, "Enchantment not registered!");
     return NimbleFootedEnchantment.INSTANCE;
   }
 
@@ -75,7 +75,7 @@ public final class NimbleFooted {
    * @author InsomniaKitten
    */
   public static float getElevatedStepHeight() {
-    return ELEVATED_STEP_HEIGHT;
+    return NimbleFooted.ELEVATED_STEP_HEIGHT;
   }
 
   /**
@@ -88,10 +88,10 @@ public final class NimbleFooted {
    * @see FabricLoader#isModLoaded
    */
   public static boolean isMissingApi() {
-    if (missingApi == null) {
-      missingApi = !FabricLoader.getInstance().isModLoaded("fabric");
+    if (NimbleFooted.missingApi == null) {
+      NimbleFooted.missingApi = !FabricLoader.getInstance().isModLoaded("fabric");
     }
-    return missingApi;
+    return NimbleFooted.missingApi;
   }
 
   /**
@@ -102,11 +102,11 @@ public final class NimbleFooted {
    * @author InsomniaKitten
    */
   public static void registerEnchantment(final BiConsumer<String, Enchantment> registrar) {
-    checkState(!registeredEnchantment, "Enchantment already registered!");
+    checkState(!NimbleFooted.registeredEnchantment, "Enchantment already registered!");
     LOGGER.debug("Registering enchantment with registrar {}", registrar);
     final String id = new Identifier(ID, "nimble_footed").toString();
     registrar.accept(id, NimbleFootedEnchantment.INSTANCE);
-    registeredEnchantment = true;
+    NimbleFooted.registeredEnchantment = true;
   }
 
   /**
@@ -121,10 +121,10 @@ public final class NimbleFooted {
   @Nonnull
   @Environment(EnvType.CLIENT)
   public static Runnable constructProcessor(final ClientPlayerEntity entity) {
-    checkState(!constructedProcessor, "Processor already constructed! (%s)", entity);
+    checkState(!NimbleFooted.constructedProcessor, "Processor already constructed! (%s)", entity);
     LOGGER.debug("Constructing processor for client player entity {}", entity);
     final Runnable processor = new NimbleFootedProcessor(entity);
-    constructedProcessor = true;
+    NimbleFooted.constructedProcessor = true;
     return processor;
   }
 
@@ -137,7 +137,7 @@ public final class NimbleFooted {
    * @author InsomniaKitten
    */
   public static boolean isNimbleFooted(final LivingEntity entity) {
-    checkState(registeredEnchantment, "Enchantment not registered!");
+    checkState(NimbleFooted.registeredEnchantment, "Enchantment not registered!");
     final ItemStack stack = entity.getEquippedStack(EquipmentSlot.FEET);
     return EnchantmentHelper.getLevel(NimbleFootedEnchantment.INSTANCE, stack) > 0;
   }

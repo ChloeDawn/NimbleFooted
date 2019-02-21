@@ -93,8 +93,8 @@ final class NimbleFootedMixins {
       at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;method_3148(FF)V")
     )
     private void nimblefooted$updateProcessor(final CallbackInfo callbackInfo) {
-      if (!method_3149() && onGround && !isSneaking() && !hasVehicle()) {
-        nimblefooted$processor.run();
+      if (!this.method_3149() && this.onGround && !this.isSneaking() && !this.hasVehicle()) {
+        this.nimblefooted$processor.run();
       }
     }
   }
