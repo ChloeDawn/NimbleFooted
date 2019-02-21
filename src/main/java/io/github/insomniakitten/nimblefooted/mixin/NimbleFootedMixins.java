@@ -102,6 +102,14 @@ final class NimbleFootedMixins {
   @Mixin(Enchantment.class)
   @SuppressWarnings("RedundantCast")
   private abstract static class EnchantmentMixin {
+    /**
+     * Replaces the translation key text component with an {@link StringTextComponent} if
+     * the enchantment is our nimble-footed enchantment and the Fabric API is not loaded.
+     * This prevents the in-game tooltip from showing an untranslated string in the tooltip;
+     * it is preferable to have a readable string when translations cannot be loaded for the mod.
+     *
+     * @author InsomniaKitten
+     */
     @ModifyVariable(
       method = "Lnet/minecraft/enchantment/Enchantment;getTextComponent(I)Lnet/minecraft/text/TextComponent;",
       at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/Enchantment;isCursed()Z")
